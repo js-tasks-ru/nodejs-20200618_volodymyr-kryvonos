@@ -13,7 +13,7 @@ server.on('request', (req, res) => {
     case 'DELETE':
       if (pathname.includes('/')) {
         res.statusCode = 400;
-        res.end('Nested paths are not allowed');
+        return res.end('Nested paths are not allowed');
       }
 
       fs.unlink(filepath, (err) => {
@@ -22,7 +22,7 @@ server.on('request', (req, res) => {
           return res.end('File not found');
         } else if (err) {
           res.statusCode = 500;
-          res.end('Internal Server Error');
+          return res.end('Internal Server Error');
         }
 
         res.end();
