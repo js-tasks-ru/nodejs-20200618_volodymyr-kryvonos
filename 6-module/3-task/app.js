@@ -1,6 +1,6 @@
 const Koa = require('koa');
 const Router = require('koa-router');
-const {productsByQuery} = require('./controllers/products');
+const { productsByQuery, productsList } = require('./controllers/products');
 
 const app = new Koa();
 
@@ -21,7 +21,7 @@ app.use(async (ctx, next) => {
 
 const router = new Router({prefix: '/api'});
 
-router.get('/products', productsByQuery);
+router.get('/products', productsByQuery, productsList);
 
 app.use(router.routes());
 
